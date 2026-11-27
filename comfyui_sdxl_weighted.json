@@ -1,0 +1,53 @@
+{
+  "_comment": "ComfyUI v0.2.2 API-format workflow for the SDXL base model. Node ids are referenced by src/generation/generate_comfyui.py: '4' checkpoint, '5' latent, '6' positive CLIPTextEncode (receives the ComfyUI numeric-weight prompt, e.g. '(fox:2.0)'), '7' negative CLIPTextEncode, '3' KSampler, '9' SaveImage. Do not renumber the nodes.",
+  "4": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "sd_xl_base_1.0.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "a red fox standing in fresh snow",
+      "clip": ["4", 1]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "low quality, blurry, distorted, ugly, bad anatomy",
+      "clip": ["4", 1]
+    }
+  },
+  "3": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 42,
+      "steps": 30,
+      "cfg": 7.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1.0,
+      "model": ["4", 0],
+      "positive": ["6", 0],
+      "negative": ["7", 0],
+      "latent_image": ["5", 0]
+    }
+  },
+  "9": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CalibWords",
+      "images": ["3", 0]
+    }
+  }
+}

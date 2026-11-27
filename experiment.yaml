@@ -1,0 +1,122 @@
+# =============================================================================
+# Master configuration for the reproduction of
+#   "The Calibration of Words" (Zhang & Galkin).
+# Every number in this file is taken verbatim from the paper (Sections 2.1-2.9)
+# unless marked otherwise.
+# =============================================================================
+
+project_name: calibration-of-words
+
+# ---- generation models --------------------------------------------------
+models:
+  main:
+    name: stabilityai/stable-diffusion-xl-base-1.0
+    backend: diffusers            # diffusers | a1111 | comfyui
+    revision: main
+    resolution: [1024, 1024]
+  extended:
+    sd35:
+      name: stabilityai/stable-diffusion-3.5-large
+      backend: diffusers
+    flux1:
+      name: black-forest-labs/FLUX.1-dev
+      backend: diffusers
+
+# ---- sampling parameters (paper Section 2.5) ----------------------------
+sampling:
+  seed: 42
+  cfg_scale: 7.5
+  steps: 30
+  sampler: "euler"                # prompt-weight-comparable scheduler
+  negative_prompt: "low quality, blurry, distorted, ugly, bad anatomy"
+  cfg_grid: [3.0, 7.5, 15.0]      # generalization experiment
+
+# ---- tool-side backends (paper Section 2.2) -----------------------------
+tools:
+  a1111:
+    base_url: "http://127.0.0.1:7860"     # Automatic1111 WebUI v1.6.0 --api
+    novelai_extension: true               # NovelAI extension v1.3
+  comfyui:
+    base_url: "http://127.0.0.1:8188"     # ComfyUI v0.2.2
+    workflow: "workflows/comfyui_sdxl_weighted.json"
+
+# ---- experiments (paper Section 2.1, Fig. 1) ----------------------------
+experiments:
+  main:
+    prompts: 60                  # 5 categories x 12
+    levels: [W1, W2, W3, W4, W5]
+    syntaxes: [sd_native, comfyui, novelai]
+    images: 900                  # 60 x 5 x 3
+  two_word:
+    prompts: 15
+    levels: [W1, W2, W3, W4, W5]
+    syntaxes: [sd_native, comfyui, novelai]
+    images: 225                  # 15 x 5 x 3
+  ablation:
+    prompts: 15
+    levels: [W1, W2, W3, W4, W5]
+    conditions: [L0, L1, L2, L3, L4]
+    images: 375                  # 15 x 5 x 5
+  migration:
+    prompts: 10
+    directions:                  # A -> B ; weights migrated by substitution or calibration
+      - [a1111, comfyui]
+      - [comfyui, a1111]
+      - [novelai, comfyui]
+      - [comfyui, novelai]
+    calibrated_images: 80        # 4 directions x 10 prompts x 2 conditions
+    reuse_main_W4: true
+  generalization:
+    prompts: 10
+    levels: [W1, W3, W5]
+    syntaxes: [sd_native, comfyui]
+    models: [sd35, flux1]
+    images: 120                  # 10 x 3 x 2 x 2
+  nonlinear_mapping:
+    prompts: 10
+    levels: [W1, W2, W3, W4, W5]
+    mappings: [linear, squared, sqrt]
+    backend: comfyui
+    images: 150                  # 10 x 5 x 3
+  calibration:
+    prompts: 10
+    reference_ops: [sd_native_W3, sd_native_W4, sd_native_W5, novelai_W5]
+    images: 40                   # 10 x 4 ; EXCLUDED from the main analysis
+
+# Expected image totals (used as a self-check by src/generation/manifest.py):
+#   main-analysis images = 900+375+225+80+120+150 = 1850
+#   + 40 calibration images                        = 1890 total generations
+expected_counts:
+  main: 900
+  two_word: 225
+  ablation: 375
+  migration: 80
+  generalization: 120
+  nonlinear_mapping: 150
+  calibration: 40
+  main_analysis_total: 1850
+  total_generation: 1890
+
+# ---- metrics (paper Section 2.6) ----------------------------------------
+metrics:
+  clip_model: "openai/clip-vit-large-patch14"
+  dino_model: "facebook/dinov2-large"
+  saturation_threshold: 0.015     # CLIP increment below which a level saturates
+  local_slope_window: 0.2         # +/- window around each weight level
+
+# ---- statistics (paper Section 2.10) ------------------------------------
+statistics:
+  alpha: 0.05
+  anova_design: "syntax * weight, images as observations"
+  bonferroni_directions: 4
+  fleiss_kappa_likert: 0.74
+  fleiss_kappa_migration: 0.72
+
+# ---- paths --------------------------------------------------------------
+paths:
+  prompts: "prompts"
+  outputs: "outputs"
+  images: "outputs/images"
+  manifests: "outputs/manifests"
+  scores: "outputs/scores"
+  figures: "outputs/figures"

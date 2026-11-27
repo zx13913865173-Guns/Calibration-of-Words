@@ -1,0 +1,38 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# ---- generated artefacts (regenerate with scripts/) ----
+outputs/*
+!outputs/.gitkeep
+!outputs/manifests/.gitkeep
+!outputs/images/.gitkeep
+!outputs/scores/.gitkeep
+!outputs/tables/.gitkeep
+!outputs/figures/.gitkeep
+
+# ---- model weights / caches ----
+models/
+checkpoints/
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+.cache/
+huggingface/
+
+# ---- tool-side runtime ----
+stable-diffusion-webui/
+ComfyUI/
+*.log
+
+# ---- editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

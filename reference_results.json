@@ -1,0 +1,72 @@
+{
+  "description": "Every quantitative result reported in the paper, transcribed for automated reference checking. Used by scripts/verify_reference.py and src/analysis/figures.py. Values are copied from Sections 3.1-3.5 and the figure notes.",
+  "source_paper": "The Calibration of Words: A Comparative Study of Three Prompt Weight Syntaxes on Semantic Control Precision in Diffusion Models (Zhang & Galkin)",
+  "clip_means": {
+    "sd_native": {"W1": 0.207, "W2": 0.235, "W3": 0.274, "W4": 0.298, "W5": 0.311},
+    "comfyui":   {"W1": 0.181, "W2": 0.211, "W3": 0.275, "W4": 0.318, "W5": 0.342},
+    "novelai":   {"W1": 0.196, "W2": 0.227, "W3": 0.274, "W4": 0.307, "W5": 0.328}
+  },
+  "clip_sd": {
+    "sd_native": {"W1": 0.040, "W2": 0.038, "W3": 0.037, "W4": 0.036, "W5": 0.035},
+    "comfyui":   {"W1": 0.016, "W2": 0.015, "W3": 0.015, "W4": 0.014, "W5": 0.015},
+    "novelai":   {"W1": 0.026, "W2": 0.025, "W3": 0.025, "W4": 0.024, "W5": 0.025}
+  },
+  "native_factors": {
+    "sd_native": {"W1": 0.81,   "W2": 0.90,   "W3": 1.10,   "W4": 1.21,   "W5": 1.33},
+    "comfyui":   {"W1": 0.2,    "W2": 0.5,    "W3": 1.0,    "W4": 1.5,    "W5": 2.0},
+    "novelai":   {"W1": 0.9025, "W2": 0.95,   "W3": 1.05,   "W4": 1.1025, "W5": 1.157625}
+  },
+  "reported": {
+    "dynamic_range":      {"sd_native": 0.104, "comfyui": 0.161, "novelai": 0.132},
+    "r2":                 {"sd_native": 0.52,  "comfyui": 0.92,  "novelai": 0.79},
+    "compression_rate":   {"sd_native": 0.48,  "comfyui": 0.08,  "novelai": 0.21},
+    "marginal_mean":      {"sd_native": 0.265, "comfyui": 0.265, "novelai": 0.266},
+    "saturation_point":   {"sd_native": 4,     "comfyui": null,  "novelai": null},
+    "dino_w5_w1":         {"sd_native": 0.24,  "comfyui": 0.41,  "novelai": 0.33},
+    "likert_w5":          {"sd_native": 3.42,  "comfyui": 4.18,  "novelai": 3.89},
+    "likert_w5_calibrated_comfyui": 3.96,
+    "intensity_clip_pearson": 0.91,
+    "anova": {
+      "syntax":                 {"F": 0.21, "df1": 2, "df2": 885, "p": 0.81, "eta2": 0.0005, "note": "p=0.81, eta2 < 0.001"},
+      "weight":                 {"F": 745,  "df1": 4, "df2": 885, "p": 0.0,  "eta2": 0.771},
+      "syntax_x_weight":        {"F": 13.4, "df1": 8, "df2": 885, "p": 0.0,  "eta2": 0.108}
+    },
+    "calibration": {
+      "sd_native_W3": {"native": 1.10, "matched_comfyui": 1.16, "sd": 0.09, "ci95": [1.10, 1.22]},
+      "sd_native_W4": {"native": 1.21, "matched_comfyui": 1.34, "sd": 0.12, "ci95": [1.26, 1.42]},
+      "sd_native_W5": {"native": 1.33, "matched_comfyui": 1.57, "sd": 0.14, "ci95": [1.48, 1.66]},
+      "novelai_W5":   {"native": 1.16, "matched_comfyui": 1.22, "sd": 0.11, "ci95": [1.15, 1.29]},
+      "t_crit_11": 2.201,
+      "comfyui_fit": {"slope": 0.0927, "slope_uncertainty": 0.0005, "intercept": 0.1690},
+      "calibrated_range": 0.128,
+      "calibrated_range_point": 0.127,
+      "advantage_native_pct": 55,
+      "advantage_calibrated_pct": 23,
+      "post_calibration_r2": 0.90
+    },
+    "ablation": {"L0": 0.104, "L1": 0.158, "L2": 0.106, "L3": 0.101, "L4": 0.001},
+    "two_word": {
+      "single_target_r2": {"sd_native": 0.52, "comfyui": 0.92, "novelai": 0.79},
+      "two_target_r2":    {"sd_native": 0.48, "comfyui": 0.84, "novelai": 0.71},
+      "single_target_dr": {"sd_native": 0.104, "comfyui": 0.161, "novelai": 0.132},
+      "two_target_dr":    {"sd_native": 0.091, "comfyui": 0.142, "novelai": 0.118}
+    },
+    "migration": {
+      "a1111_to_comfyui":   {"retention_before": 0.66, "retention_after": 0.79, "dclip_before": 0.083, "dclip_after": 0.041},
+      "comfyui_to_a1111":   {"retention_before": 0.63, "retention_after": 0.76, "dclip_before": 0.061, "dclip_after": 0.036},
+      "novelai_to_comfyui": {"retention_before": 0.69, "retention_after": 0.78, "dclip_before": 0.072, "dclip_after": 0.039},
+      "comfyui_to_novelai": {"retention_before": 0.65, "retention_after": 0.74, "dclip_before": 0.068, "dclip_after": 0.038}
+    },
+    "cfg": {
+      "3.0":  {"sd_native": 0.48, "comfyui": 0.89, "novelai": 0.75},
+      "7.5":  {"sd_native": 0.52, "comfyui": 0.92, "novelai": 0.79},
+      "15.0": {"sd_native": 0.38, "comfyui": 0.85, "novelai": 0.68}
+    },
+    "extended_generalization": {
+      "sd35":  {"comfyui": 0.90, "sd_native": 0.49},
+      "flux1": {"comfyui": 0.88, "sd_native": 0.46}
+    },
+    "nonlinear_mapping": {"linear": 0.92, "squared": 0.58, "sqrt": 0.61},
+    "nonlinear_compression": {"linear": 0.08, "squared": 0.42, "sqrt": 0.39}
+  }
+}

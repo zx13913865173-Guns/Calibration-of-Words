@@ -1,0 +1,15 @@
+{
+  "description": "Extended generalization set (paper Sections 2.1 and 3.5): 10 prompts tested on SD3.5 and Flux.1 at W1, W3 and W5, with SD-native and ComfyUI syntaxes only (NovelAI excluded because the community extension was unavailable for the same backend).",
+  "prompts": [
+    {"id": "G01", "text": "a woman walking through a wide green park", "target_word": "woman"},
+    {"id": "G02", "text": "a tabby cat sleeping on a wooden bench", "target_word": "cat"},
+    {"id": "G03", "text": "a stone cottage beside a narrow country road", "target_word": "cottage"},
+    {"id": "G04", "text": "a tall sunflower standing in a clay pot", "target_word": "sunflower"},
+    {"id": "G05", "text": "a copper kettle on a rustic wooden table", "target_word": "kettle"},
+    {"id": "G06", "text": "a red fox standing in fresh white snow", "target_word": "fox"},
+    {"id": "G07", "text": "a glass tower rising above a busy plaza", "target_word": "tower"},
+    {"id": "G08", "text": "a small bonsai tree in a shallow pot", "target_word": "bonsai"},
+    {"id": "G09", "text": "a leather satchel resting on a stone bench", "target_word": "satchel"},
+    {"id": "G10", "text": "a wooden pier stretching into a calm bay", "target_word": "pier"}
+  ]
+}

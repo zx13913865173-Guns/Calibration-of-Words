@@ -1,0 +1,20 @@
+{
+  "description": "Two-word weighting interaction set (paper Sections 2.4 and 3.4): 15 prompts, each with two target words weighted simultaneously at the same level. CLIP Score is computed for each target word and then averaged.",
+  "prompts": [
+    {"id": "T01", "text": "a woman holding a red umbrella on a rainy street", "target_words": ["woman", "umbrella"]},
+    {"id": "T02", "text": "a cat sitting on a wooden chair near a window", "target_words": ["cat", "chair"]},
+    {"id": "T03", "text": "a stone cottage beside a tall green tree", "target_words": ["cottage", "tree"]},
+    {"id": "T04", "text": "a sunflower growing in a blue ceramic pot", "target_words": ["sunflower", "pot"]},
+    {"id": "T05", "text": "a man reading a leather book in a garden", "target_words": ["man", "book"]},
+    {"id": "T06", "text": "a fox walking through deep white snow", "target_words": ["fox", "snow"]},
+    {"id": "T07", "text": "a glass tower beside a small stone bridge", "target_words": ["tower", "bridge"]},
+    {"id": "T08", "text": "a rabbit beside a basket of fresh carrots", "target_words": ["rabbit", "basket"]},
+    {"id": "T09", "text": "a lantern hanging above a long wooden table", "target_words": ["lantern", "table"]},
+    {"id": "T10", "text": "a lavender field under a bright morning sky", "target_words": ["lavender", "sky"]},
+    {"id": "T11", "text": "a bicycle leaning against a red brick wall", "target_words": ["bicycle", "wall"]},
+    {"id": "T12", "text": "a teapot beside a bowl of green apples", "target_words": ["teapot", "bowl"]},
+    {"id": "T13", "text": "a penguin standing on a wide flat ice shelf", "target_words": ["penguin", "shelf"]},
+    {"id": "T14", "text": "a violin resting on a wooden chair", "target_words": ["violin", "chair"]},
+    {"id": "T15", "text": "a lighthouse standing above a calm blue sea", "target_words": ["lighthouse", "sea"]}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "description": "Perceptual equivalence calibration set (paper Section 2.3): 10 prompts x 4 reference operations = 40 calibration images. Twelve raters complete a constant-stimulus, five-option forced-choice task; the 40 images are excluded from the main analysis.",
+  "reference_operations": [
+    {"key": "sd_native_W3", "syntax": "sd_native", "level": "W3", "matched_comfyui": 1.16, "option_set": [0.88, 1.03, 1.18, 1.33, 1.48]},
+    {"key": "sd_native_W4", "syntax": "sd_native", "level": "W4", "matched_comfyui": 1.34, "option_set": [1.06, 1.21, 1.36, 1.51, 1.66]},
+    {"key": "sd_native_W5", "syntax": "sd_native", "level": "W5", "matched_comfyui": 1.57, "option_set": [1.10, 1.25, 1.40, 1.55, 1.70]},
+    {"key": "novelai_W5",   "syntax": "novelai",   "level": "W5", "matched_comfyui": 1.22, "option_set": [0.94, 1.09, 1.24, 1.39, 1.54]}
+  ],
+  "note": "Option sets are equally spaced and bracket the expected match value; the set is shifted for each reference operation. Only the SD three-layer option set (1.10/1.25/1.40/1.55/1.70) is quoted verbatim in the paper; the other three are reconstructed with the same spacing convention.",
+  "raters": 12,
+  "rounds": 3,
+  "prompts": [
+    {"id": "C01", "text": "a woman walking through a wide green park", "target_word": "woman"},
+    {"id": "C02", "text": "a tabby cat sleeping on a wooden bench", "target_word": "cat"},
+    {"id": "C03", "text": "a stone cottage beside a narrow country road", "target_word": "cottage"},
+    {"id": "C04", "text": "a tall sunflower standing in a clay pot", "target_word": "sunflower"},
+    {"id": "C05", "text": "a copper kettle on a rustic wooden table", "target_word": "kettle"},
+    {"id": "C06", "text": "a red fox standing in fresh white snow", "target_word": "fox"},
+    {"id": "C07", "text": "a glass tower rising above a busy plaza", "target_word": "tower"},
+    {"id": "C08", "text": "a small bonsai tree in a shallow pot", "target_word": "bonsai"},
+    {"id": "C09", "text": "a leather satchel resting on a stone bench", "target_word": "satchel"},
+    {"id": "C10", "text": "a wooden pier stretching into a calm bay", "target_word": "pier"}
+  ]
+}

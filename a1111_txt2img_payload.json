@@ -1,0 +1,42 @@
+{
+  "_comment": "Reference payload for Automatic1111 WebUI v1.6.0 POST /sdapi/v1/txt2img. Written by src/generation/generate_a1111.py; kept here so the request shape that produced the SD-native and NovelAI conditions is part of the repository. 'prompt' carries the rendered syntax: [[fox]] for SD-native level W1 and {{fox}} for NovelAI level W3.",
+  "examples": [
+    {
+      "condition": "sd_native / W1",
+      "payload": {
+        "prompt": "a red [[fox]] standing in fresh snow",
+        "negative_prompt": "low quality, blurry, distorted, ugly, bad anatomy",
+        "seed": 42,
+        "steps": 30,
+        "cfg_scale": 7.5,
+        "width": 1024,
+        "height": 1024,
+        "sampler_name": "Euler",
+        "batch_size": 1,
+        "n_iter": 1,
+        "save_images": false
+      }
+    },
+    {
+      "condition": "novelai / W3",
+      "payload": {
+        "prompt": "a red {{fox}} standing in fresh snow",
+        "negative_prompt": "low quality, blurry, distorted, ugly, bad anatomy",
+        "seed": 42,
+        "steps": 30,
+        "cfg_scale": 7.5,
+        "width": 1024,
+        "height": 1024,
+        "sampler_name": "Euler",
+        "batch_size": 1,
+        "n_iter": 1,
+        "save_images": false
+      }
+    }
+  ],
+  "novelai_extension": {
+    "name": "stable-diffusion-webui-novelai-prompt-weights",
+    "version": "1.3",
+    "semantics": "each { } pair multiplies the enclosed token embedding by 1.05, each [ ] pair by 0.95"
+  }
+}

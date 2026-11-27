@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this code or the prompts, please cite the paper below."
+title: "The Calibration of Words: A Comparative Study of Three Prompt Weight Syntaxes on Semantic Control Precision in Diffusion Models"
+type: software
+authors:
+  - family-names: Zhang
+    given-names: Xin
+    orcid: "https://orcid.org/0009-0008-2248-9501"
+  - family-names: Galkin
+    given-names: Dmitry
+    orcid: "https://orcid.org/0000-0002-4542-9527"
+    affiliation: "Tomsk State University"
+repository-code: "https://github.com/<user>/Calibration-of-Words-Repro"
+license: MIT
+keywords:
+  - diffusion models
+  - prompt weighting
+  - semantic control precision
+  - Stable Diffusion XL
+  - CLIP score
+  - DINOv2
+  - reproducibility
+abstract: >-
+  Reproduction package for the comparative study of three prompt-weight syntaxes
+  (SD-native parentheses, ComfyUI numeric weights, NovelAI curly braces) on SDXL.
+  It regenerates all 1,890 images, the CLIP-L and DINOv2-large scores, the
+  two-way ANOVA and the reported figures.
+version: 1.0.0
+date-released: "2024-09-01"
+preferred-citation:
+  type: article
+  title: "The Calibration of Words: A Comparative Study of Three Prompt Weight Syntaxes on Semantic Control Precision in Diffusion Models"
+  authors:
+    - family-names: Zhang
+      given-names: Xin
+    - family-names: Galkin
+      given-names: Dmitry
+  year: 2024
